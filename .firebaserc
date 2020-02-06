@@ -1,12 +1,12 @@
 {
     "projects": {
-        "default": "energym-9b76f"
+        "default": "cdiego-cad55"
     },
     "targets": {
-        "energym-9b76f": {
+        "cdiego-cad55": {
             "hosting": {
-                "admin": ["admin-energym"],
-                "client": ["energym-9b76f"]
+                "admin": ["admin-c96a9"],
+                "client": ["cdiego-cad55"]
             }
         }
     }
