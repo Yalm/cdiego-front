@@ -1,0 +1,32 @@
+.product {
+    .img:hover .product-actions {
+        opacity: 1;
+    }
+    .product-actions {
+        left: 40%;
+        top: 40%;
+        opacity: 0;
+        transition: opacity .3s ease-out;
+        button {
+            height: 2.75rem;
+            width: 2.75rem;
+            padding: 0;
+            border-radius: 50%;
+            background-color: #313537;
+            color: #EEEEEF;
+            margin: 0 3px;
+            cursor: pointer;
+            &:hover {
+                transform: scale(1) translateY(0);
+            }
+            i {
+                padding-top: 7px;
+            }
+        }
+    }
+}
+
+.offer {
+    top: 20%;
+    right: 10%;
+}

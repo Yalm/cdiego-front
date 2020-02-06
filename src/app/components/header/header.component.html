@@ -1,0 +1,44 @@
+<div class="d-flex py-3 py-md-4 align-items-center container">
+    <a routerLink="/" class="pr-md-5">
+        <img src="/assets/img/logo.png" alt="logo" width="170" height="70" />
+    </a>
+    <ul class="list-unstyled d-md-flex justify-content-around w-100 mb-0 d-none">
+        <li><a routerLink="/" class="text-decoration-none text-dark">Inicio</a></li>
+        <li><a routerLink="/about" class="text-decoration-none text-dark">Nosotros</a></li>
+        <li><a routerLink="/shop" class="text-decoration-none text-dark">Tienda</a></li>
+        <li><a routerLink="/contact" class="text-decoration-none text-dark">Contáctanos</a></li>
+    </ul>
+    <div class="d-flex ml-auto">
+        <button mat-icon-button type="button" aria-label="icon-search" class="bg-secondary mr-2"
+            (click)="searchActive = true">
+            <mat-icon>search</mat-icon>
+        </button>
+        <a mat-icon-button type="button" aria-label="icon-search" routerLink="/cart" class="bg-secondary mr-2">
+            <mat-icon>shopping_cart</mat-icon>
+        </a>
+        <ng-container *ngIf="auth.customer$ | async as customer;else login">
+            <a routerLink="/profile">
+                <img [src]="customer.avatar" appFallbackSrc class="rounded-circle" width="38" height="38"
+                    [alt]="customer.name">
+            </a>
+        </ng-container>
+        <ng-template #login>
+            <a mat-icon-button type="button" aria-label="icon-search" routerLink="/login" class="bg-secondary">
+                <mat-icon>perm_identity</mat-icon>
+            </a>
+        </ng-template>
+
+    </div>
+</div>
+<div class="modal-search fixed-top w-100 h-100 p-3" [class.active]="searchActive">
+    <span class="modal-search-close" (click)="searchActive = false">
+        <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <line fill="none" stroke="#000" stroke-width="1.4" x1="1" y1="1" x2="19" y2="19"></line>
+            <line fill="none" stroke="#000" stroke-width="1.4" x1="19" y1="1" x2="1" y2="19"></line>
+        </svg>
+    </span>
+    <form class="modal-search-from" [formGroup]="form" (ngSubmit)="search()">
+        <input type="text" aria-label="search products" formControlName="search" name="search" placeholder="Buscar..."
+            class="search-input border-primary" autocomplete="off">
+    </form>
+</div>

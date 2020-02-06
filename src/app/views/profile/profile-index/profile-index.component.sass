@@ -1,0 +1,41 @@
+.breadcrumb-pet
+    background-position: center bottom
+    background-repeat: no-repeat
+    background-size: cover
+    background-attachment: scroll
+    background-image: url("/assets/img/breadcrumb.png")
+    &.pb-20
+        padding: 20em 0
+    .bradcaump-title
+        color: #060606
+        @media (max-width: 768px)
+            padding: 3.1em 0 !important
+
+.profile
+    background-color: #191919
+    overflow: hidden
+    .avatar
+        width: 120px
+        height: 120px
+        margin: 0 auto
+        padding: 20px 0
+        img
+            max-width: 100%
+            border-radius: 50%
+    .list-items
+        li
+            cursor: pointer
+            &:first-child
+                border: none
+                &:before
+                    bottom: 100%
+                    left: 47%
+                    border: 10px solid rgba(231, 76, 60, 0)
+                    content: ''
+                    position: absolute
+                    pointer-events: none
+                    border-bottom-color: #e74c3c
+            a
+                height: 70px
+                align-items: center
+

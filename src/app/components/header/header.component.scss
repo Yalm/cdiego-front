@@ -1,0 +1,55 @@
+/* MODAL SEARCH */
+.modal-search {
+    z-index: 2000;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: none;
+    transition: opacity .15s linear;
+    &.active {
+        display: block;
+    }
+    .modal-search-close {
+        position: absolute;
+        z-index: 1010;
+        top: 10px;
+        right: 10px;
+        padding: 5px;
+        cursor: pointer;
+        svg line {
+            stroke: #15ad45;
+        }
+    }
+    .modal-search-from {
+        padding-top: 2.5rem;
+    }
+    .search-input {
+        font-size: inherit;
+        line-height: 2.5;
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        opacity: .5;
+        transition: .3s;
+        width: 80%;
+        min-height: 50px;
+        padding: 10px;
+        border-bottom: 1px solid transparent;
+        outline: 0;
+        background: 0 0;
+        color: inherit;
+        font-size: inherit;
+        font-family: inherit;
+        box-sizing: border-box;
+        font-size: 36px;
+        margin: auto;
+        display: block;
+        &:focus {
+            opacity: 1;
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        .search-input {
+            line-height: 1;
+            font-size: 30px;
+        }
+    }
+}

@@ -1,0 +1,48 @@
+<mat-carousel [slides]="2" [autoplay]="true" proportion="15">
+    <mat-carousel-slide #matCarouselSlide *ngFor="let slider of sliders" [image]="slider.image">
+    </mat-carousel-slide>
+</mat-carousel>
+<div class="container pt-5 d-flex flex-wrap">
+    <div class="col-xl-4 col-lg-6 mb-2">
+        <img src="/assets/img/galletas.png" alt="galletas" class="img-fluid w-100">
+        <div class="position-absolute offer">
+            <p>Galletas</p>
+            <h4 class="mb-4">50% Descuento</h4>
+            <a routerLink="/shop" class="border-bottom border-primary text-decoration-none">COMPRAR</a>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 mb-2">
+        <img src="/assets/img/caramelos.png" alt="galletas" class="img-fluid w-100">
+        <div class="position-absolute offer">
+            <p>Caramelos</p>
+            <h4 class="mb-4">Oferta</h4>
+            <a routerLink="/shop" class="border-bottom border-primary text-decoration-none">COMPRAR</a>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 mb-2">
+        <img src="/assets/img/gaseosas.png" alt="galletas" class="img-fluid w-100">
+        <div class="position-absolute offer">
+            <p>Gaseosas</p>
+            <h4 class="mb-4">Light</h4>
+            <a routerLink="/shop" class="border-bottom border-primary text-decoration-none">COMPRAR</a>
+        </div>
+    </div>
+    <h1 class="title text-center col-12 px-md-0 pt-5 mt-md-5">Nuevos Productos</h1>
+    <p class="text-center col-12 px-md-0">La mejor tienda de ventas online</p>
+    <ng-container *ngIf="pagination$ | async as pagination">
+        <p class="col-12 p-0">Mostrando 1–9 de {{pagination.total}} productos</p>
+        <div class="col-md-4 col-6 product mb-3 text-center" *ngFor="let product of pagination.data">
+            <div class="img">
+                <a [routerLink]="['/p',product.id]">
+                    <img [src]="product.cover" [alt]="product.name" class="img-fluid" />
+                </a>
+                <div class="position-absolute m-0 p-0 product-actions">
+                    <button type="button" (click)="addCartProduct(product)" title="Agregar al carrito"
+                        class="add-cart"><i class="material-icons">shopping_cart </i></button>
+                </div>
+            </div>
+            <a class="h6 mt-3 text-decoration-none text-dark" [routerLink]="['/p',product.id]">{{product.name}}</a>
+            <p class="mb-0">S/. {{product.price}}</p>
+        </div>
+    </ng-container>
+</div>

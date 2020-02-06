@@ -1,0 +1,59 @@
+<div class="container register pt-md-5 pb-5">
+    <div class="row d-flex justify-content-center pt-5 pb-2">
+        <div class="col-lg-8 col-md-7" *ngIf="!sendEmailVerify;else send">
+            <h1 class="font-weight-bold text-center">Registro</h1>
+            <p class="text-center">Ya tienes una cuenta? <a routerLink="/login">Iniciar Sesión</a> </p>
+            <form [formGroup]="form" (ngSubmit)="register()" class="form-row pt-3" novalidate>
+                <mat-form-field class="w-100 mb-2 col-12" appearance="outline" hintLabel="Max 191 caracteres">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput #name maxlength="191" formControlName="name" placeholder="Nombre" name="name"
+                        required>
+                    <mat-hint align="end">{{name.value?.length || 0}}/191</mat-hint>
+                    <mat-error appInvalidMessage="name"></mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-100 mb-2 col-12" appearance="outline" hintLabel="Max 191 caracteres">
+                    <mat-label>Dirección de correo electrónico</mat-label>
+                    <input matInput #email maxlength="191" formControlName="email"
+                        placeholder="Dirección de correo electrónico" name="email" required>
+                    <mat-hint align="end">{{email.value?.length || 0}}/191</mat-hint>
+                    <mat-error appInvalidMessage="email"></mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6 mb-2" appearance="outline" hintLabel="Max 191 caracteres">
+                    <mat-label>Constraseña</mat-label>
+                    <input type="password" matInput #password maxlength="191" formControlName="password"
+                        placeholder="Contraseña" name="password" required>
+                    <mat-hint align="end">{{password.value?.length || 0}}/191</mat-hint>
+                    <mat-error appInvalidMessage="password"></mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6 mb-2" appearance="outline" hintLabel="Max 191 caracteres">
+                    <mat-label>Confirmar constraseña</mat-label>
+                    <input type="password" matInput #password_confirmation maxlength="191"
+                        formControlName="password_confirmation" placeholder="Confirmar contraseña"
+                        name="password_confirmation" required>
+                    <mat-hint align="end">{{password_confirmation.value?.length || 0}}/191</mat-hint>
+                    <mat-error appInvalidMessage="password_confirmation"></mat-error>
+                </mat-form-field>
+
+                <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="terms" formControlName="terms">
+                    <label class="custom-control-label" for="terms">Declaro que he leído y acepto la nueva Política de
+                        Privacidad y los Términos y Condiciones de Comercial Diego.</label>
+                </div>
+                <button type="submit" mat-raised-button [disabled]="form.invalid" color="primary"
+                    class="text-white position-relative w-100 mt-3">Registarse</button>
+            </form>
+        </div>
+        <ng-template #send>
+            <div class="col-md-8 pb-5 pt-5">
+                <h2>Verifique su dirección de correo electrónico</h2>
+                <p>Antes de continuar, consulte su correo electrónico para ver un enlace de verificación.</p>
+                <p>Si no ha recibido el correo electrónico, <a routerLink="/confirmation/new">haga clic aquí
+                        para
+                        solicitar otro.</a></p>
+            </div>
+        </ng-template>
+    </div>
+</div>

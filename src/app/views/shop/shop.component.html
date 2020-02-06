@@ -1,0 +1,62 @@
+<app-breadcrumb title="Tienda"
+    subTitle="Las mejores ofertas en variedad de productos, con la garantía que nos caracteriza.">
+</app-breadcrumb>
+<div class="container px-0 row mx-auto py-md-5">
+    <div class="col-md-9 pl-md-0 d-flex flex-wrap pt-3 pt-md-0">
+        <h2 class="col-12 p-0">Tienda</h2>
+        <ng-container *ngIf="pagination$ | async as pagination">
+            <p class="col-12 p-0">Mostrando 1–9 de {{pagination.total}} productos</p>
+            <div class="col-md-4 col-6 product mb-3 text-center" *ngFor="let product of pagination.data">
+                <div class="img">
+                    <a [routerLink]="['/p',product.id]">
+                        <img [src]="product.cover" [alt]="product.name" class="img-fluid" />
+                    </a>
+                    <div class="position-absolute m-0 p-0 product-actions">
+                        <button type="button" (click)="addCartProduct(product)" title="Agregar al carrito"
+                            class="add-cart"><i class="material-icons">shopping_cart </i></button>
+                    </div>
+                </div>
+                <a class="h6 mt-3 text-decoration-none text-dark" [routerLink]="['/p',product.id]">{{product.name}}</a>
+                <p class="mb-0">S/. 10.00</p>
+            </div>
+            <mat-paginator [length]="pagination.total" (page)="page($event)"
+                class="d-flex justify-content-end w-100 pt-3" [pageSize]="pagination.per_page"
+                [pageSizeOptions]="[9, 12, 25, 100]">
+            </mat-paginator>
+        </ng-container>
+    </div>
+    <div class="col-md-3 px-3 px-md-0">
+        <ng-container *ngIf="filters$ | async as filters">
+            <div class="filters pb-3" *ngIf="filters.params.length > 0">
+                <h5 class="h5 mb-3">Filtros</h5>
+                <mat-chip-list aria-label="filter selection">
+                    <mat-chip *ngFor="let filter of filters.params" (removed)="removeFilter(filter.key,filters)">
+                        {{filter.value}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+        </ng-container>
+
+        <h5>Categorías</h5>
+        <ul class="list-unstyled">
+            <li *ngFor="let category of categories$ | async" class="mb-2">
+                <a class="item-link text-decoration-none" routerLink="/shop"
+                    [queryParams]="{ category: category.name }">{{ category.name }}</a>
+            </li>
+        </ul>
+        <h5>Productos Más Populares</h5>
+        <ng-container *ngIf="pagination$ | async as data">
+            <div class="d-flex flex-wrap mb-3" *ngFor="let product of data.data">
+                <a class="col-3 px-0" [routerLink]="['/p',product.id]">
+                    <img [src]="product.cover" [alt]="product.name" class="img-fluid" />
+                </a>
+                <div class="col-9 pr-0">
+                    <a class="h6 mt-3 text-decoration-none text-dark"
+                        [routerLink]="['/p',product.id]">{{product.name}}</a>
+                    <p class="mb-0">S/. {{product.price}}</p>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

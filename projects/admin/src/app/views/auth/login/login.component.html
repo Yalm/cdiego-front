@@ -1,0 +1,41 @@
+<form (ngSubmit)="login()" [formGroup]="form">
+    <mat-card class="card-petshop" appLoader>
+        <mat-card-header class="text-center">
+            <mat-card-title class="mat-h4 text-center">Ingrese a su cuenta</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="d-flex align-items-center flex-column px-4 pt-4">
+            <mat-form-field class="w-100 mb-2" appearance="outline" hintLabel="Max 191 caracteres">
+                <mat-icon matPrefix>email</mat-icon>
+                <mat-label>Dirección de correo electrónico</mat-label>
+                <input matInput #email maxlength="191" formControlName="email"
+                    placeholder="Dirección de correo electrónico" name="email" required>
+                <mat-hint align="end">{{email.value?.length || 0}}/191</mat-hint>
+                <mat-error appInvalidMessage="email"></mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100 mb-2" appearance="outline" hintLabel="Max 191 caracteres">
+                <mat-icon matPrefix>lock</mat-icon>
+                <mat-label>Constraseña</mat-label>
+                <input [type]="hide ? 'password' : 'text'" matInput placeholder="Contraseña" formControlName="password"
+                    name="password" #password>
+
+                <mat-hint align="end">{{password.value?.length || 0}}/191</mat-hint>
+                <mat-error appInvalidMessage="password"></mat-error>
+
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                    [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <a routerLink="/password/email">¿Olvidaste tu contraseña?</a>
+        </mat-card-content>
+
+        <mat-card-actions class="d-flex justify-content-center">
+            <button mat-raised-button [disabled]="form.invalid" color="primary" class="btn-login mb-3" type="submit">
+                Inicia sesión <mat-icon aria-hidden="false" aria-label="Inicia sesión">arrow_right_alt</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</form>

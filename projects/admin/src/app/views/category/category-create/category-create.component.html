@@ -1,0 +1,19 @@
+<mat-card class="w-100 p-0" [formGroup]="form" appLoader>
+    <mat-card-content>
+        <mat-tab-group class="group-pet">
+            <mat-tab label="Información basica *">
+                <mat-form-field class="w-100 mb-2" appearance="outline" hintLabel="Max 191 caracteres">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput #name maxlength="191" formControlName="name" placeholder="Nombre" name="name"
+                        required>
+                    <mat-hint align="end">{{name.value?.length || 0}}/191</mat-hint>
+                    <mat-error appInvalidMessage="name"></mat-error>
+                </mat-form-field>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+    <mat-card-actions class="pl-3 pb-3 mt-n4">
+        <a mat-button routerLink="/categories" color="primary">Atras</a>
+        <button type="button" [disabled]="form.invalid" (click)="store()" color="primary" mat-raised-button>Guardar</button>
+    </mat-card-actions>
+</mat-card>

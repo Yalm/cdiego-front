@@ -1,0 +1,13 @@
+{
+    "projects": {
+        "default": "energym-9b76f"
+    },
+    "targets": {
+        "energym-9b76f": {
+            "hosting": {
+                "admin": ["admin-energym"],
+                "client": ["energym-9b76f"]
+            }
+        }
+    }
+}

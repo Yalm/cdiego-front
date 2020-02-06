@@ -1,0 +1,41 @@
+<div class="container login pt-md-5 pb-5">
+    <div class="row d-flex justify-content-center pt-5 pb-2">
+        <div class="col-lg-5 col-md-7">
+            <h1 class="font-weight-bold text-center">Iniciar Sesión</h1>
+            <p class="text-center">No tienes una cuenta? <a routerLink="/register">Creáte una ahora</a> </p>
+            <nav aria-label="breadcrumb text-dark">
+                <div class="alert" [className]="verify.isVerify ? 'alert-success' : 'alert-danger'" role="alert"
+                    *ngIf="verify">
+                    {{ verify.isVerify ? 'Se verifico su correo': 'No se pudo verficar su correo'}}
+                </div>
+            </nav>
+            <form [formGroup]="form" (ngSubmit)="login()" novalidate class="pt-3">
+                <mat-form-field class="w-100 mb-2" appearance="outline" hintLabel="Max 191 caracteres">
+                    <mat-label>Dirección de correo electrónico</mat-label>
+                    <input matInput #email maxlength="191" formControlName="email"
+                        placeholder="Dirección de correo electrónico" name="email" required>
+                    <mat-hint align="end">{{email.value?.length || 0}}/191</mat-hint>
+                    <mat-error appInvalidMessage="email"></mat-error>
+                </mat-form-field>
+
+                <a routerLink="/password/email" class="text-decoration-none text-right w-100 d-block">¿Olvidaste tu
+                    contraseña?</a>
+                <mat-form-field class="w-100 mb-2" appearance="outline" hintLabel="Max 191 caracteres">
+                    <mat-label>Constraseña</mat-label>
+                    <input type="password" matInput #password maxlength="191" formControlName="password"
+                        placeholder="Contraseña" name="email" required>
+                    <mat-hint align="end">{{password.value?.length || 0}}/191</mat-hint>
+                    <mat-error appInvalidMessage="password"></mat-error>
+                </mat-form-field>
+
+                <button type="submit" mat-raised-button [disabled]="form.invalid" color="primary"
+                    class="text-white w-100 mb-3">Iniciar Sesión</button>
+                <span>
+                    ¿Todavía no has recibido el correo electrónico de confirmación?
+                    <a routerLink="/confirmation/new" class="text-decoration-none"> Vuelva a enviar el correo
+                        electrónico </a>
+                </span>
+            </form>
+        </div>
+    </div>
+</div>

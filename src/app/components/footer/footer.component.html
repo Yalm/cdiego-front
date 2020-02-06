@@ -1,0 +1,107 @@
+<div class="container px-0">
+    <ul
+        class="border-top border-secondary list-unstyled mb-0 d-flex flex-wrap justify-content-around align-items-center  py-5"
+    >
+        <li class="d-flex align-items-center">
+            <i class="material-icons text-primary mr-2">
+                local_shipping
+            </i>
+            Envíos a todo el Perú
+        </li>
+        <li class="d-flex align-items-center">
+            <i class="material-icons text-primary mr-2">
+                credit_card
+            </i>
+            Pago Seguro
+        </li>
+        <li class="d-flex align-items-center">
+            <i class="material-icons text-primary mr-2">
+                alarm
+            </i>
+            Soporte 24/7
+        </li>
+    </ul>
+</div>
+<footer class="bg-secondary d-md-block d-none py-5">
+    <div class="container d-flex flex-wrap px-0">
+        <div class="col-md-4">
+            <a routerLink="/"
+                ><img
+                    src="/assets/img/logo.png"
+                    alt="logo"
+                    width="160"
+                    height="70"
+            /></a>
+            <p class="pt-2 pb-1">La mejor Tienda Online de confitería</p>
+            <p class="mb-0">
+                <strong>Ubicación:</strong> Av. José Olaya 591 - Huancayo
+            </p>
+            <p><strong>Correo:</strong> admin@comercialdiego.com</p>
+        </div>
+        <div class="ml-auto col-lg-3 col-xl-2 col-md-4 ml-auto">
+            <h6 class="pb-4">Categorías</h6>
+            <ul class="list-unstyled">
+                <li *ngFor="let category of categories$ | async">
+                    <a
+                        class="item-link text-decoration-none"
+                        routerLink="/shop"
+                        [queryParams]="{ category: category.name }"
+                        >{{ category.name }}</a
+                    >
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4 info-sect">
+            <h6 class="pb-4">Horarios de Atención</h6>
+            <ul class="list-unstyled">
+                <li>Lunes - Viernes 7:00 a.m. - 8:00 p.m.</li>
+                <li>Sábados 8:00 a. m. - 6:00 p.m.</li>
+                <li>Domingos 9:00 a. m. - 5:00 p.m.</li>
+            </ul>
+            <div class="d-flex flex-wrap">
+                <a
+                    mat-icon-button
+                    type="button"
+                    aria-label="icon-search"
+                    href="https://www.facebook.com/Comercial-Diego-103156814396757/"
+                    target="_blank"
+                    class="bg-secondary mr-2"
+                >
+                    <img
+                        src="/assets/svg/facebook.svg"
+                        alt="facebook"
+                        class="img-fluid"
+                    />
+                </a>
+                <a
+                    mat-icon-button
+                    type="button"
+                    aria-label="icon-search"
+                    href="https://www.instagram.com/cdiegohyo/?hl=es-la"
+                    target="_blank"
+                    class="bg-secondary mr-2"
+                >
+                    <img
+                        src="/assets/svg/instagram.svg"
+                        alt="instagram"
+                        class="img-fluid"
+                    />
+                </a>
+                <a
+                    mat-icon-button
+                    type="button"
+                    aria-label="icon-search"
+                    href="https://twitter.com/cdiegohyo"
+                    target="_blank"
+                    class="bg-secondary"
+                >
+                    <img
+                        src="/assets/svg/twitter.svg"
+                        alt="twitter"
+                        class="img-fluid"
+                    />
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

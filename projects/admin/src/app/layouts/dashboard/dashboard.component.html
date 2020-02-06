@@ -1,0 +1,57 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="example-toolbar">
+        <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1 class="example-app-name">Comercial Diego</h1>
+        <div class="nav-actions d-flex align-items-center ml-auto" *ngIf="user">
+            <button mat-button class="p-0" [matMenuTriggerFor]="menu">
+                <img appFallbackSrc [src]="user.avatar" [alt]="user.name" width="28" height="28"
+                    class="rounded">
+                <mat-icon aria-hidden="false" aria-label="Info">more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <a mat-menu-item routerLink="/profile">
+                    <mat-icon>account_circle</mat-icon>
+                    Perfil
+                </a>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    Salir
+                </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56" class="sidenav-w">
+
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                <!-- This is the tree node template for leaf nodes -->
+                <mat-tree-node *matTreeNodeDef="let node" [class.pl-2]="node.level === 0" matTreeNodePadding>
+                    <!-- use a disabled button to provide padding for tree leaf -->
+                    <a [routerLink]="node.link" class="d-flex w-100 h-100 align-items-center text-dark"
+                        routerLinkActive="text-primary" [routerLinkActiveOptions]="{exact: true}">
+                        <mat-icon class="mr-2" *ngIf="node.icon">{{node.icon}}</mat-icon>
+                        {{node.name}}
+                    </a>
+                </mat-tree-node>
+                <!-- This is the tree node template for expandable nodes -->
+                <mat-tree-node class="align-items-center px-2" *matTreeNodeDef="let node;when: hasChild"
+                    matTreeNodePadding matTreeNodeToggle [class.text-primary]="treeControl.isExpanded(node)">
+                    <mat-icon class="order-0 mr-2" *ngIf="node.icon">{{node.icon}}</mat-icon>
+
+                    <mat-icon class="mat-icon-rtl-mirror order-2">
+                        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                    </mat-icon>
+                    <p class="order-1 w-100 mb-0">{{node.name}}</p>
+                </mat-tree-node>
+            </mat-tree>
+        </mat-sidenav>
+
+        <mat-sidenav-content class="p-3">
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

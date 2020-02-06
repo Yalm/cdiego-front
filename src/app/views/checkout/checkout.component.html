@@ -1,0 +1,140 @@
+<app-breadcrumb title="Pago" subTitle="Medios de pago confiables y seguros"></app-breadcrumb>
+<div class="container pt-5">
+    <form [formGroup]="form" class="row pb-5 d-flex justify-content-center">
+        <ng-container *ngIf="!order;else orderTemplate">
+            <div class="col-xl-8 col-lg-7">
+                <h2 class="mb-3">Dirección de envío</h2>
+                <mat-tab-group (selectedTabChange)="shipping($event.index)">
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon class="example-tab-icon">location_searching</mat-icon>
+                            Envío por encomienda
+                        </ng-template>
+
+                        <mat-form-field class="col-md-6 mb-2 pt-3" appearance="outline">
+                            <mat-label>Departamento</mat-label>
+                            <mat-select placeholder="Departamento" formControlName="department">
+                                <mat-option *ngFor="let item of departments | async" [value]="item.id_ubigeo">
+                                    {{item.nombre_ubigeo}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error appInvalidMessage="department"></mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="col-md-6 mb-2" appearance="outline">
+                            <mat-label>Provincia</mat-label>
+                            <mat-select placeholder="Provincia" formControlName="province">
+                                <mat-option *ngFor="let item of provinces | async" [value]="item.id_ubigeo">
+                                    {{item.nombre_ubigeo}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error appInvalidMessage="province"></mat-error>
+                        </mat-form-field>
+                    </mat-tab>
+
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <mat-icon class="example-tab-icon">store</mat-icon>
+                            Recoger en tienda
+                        </ng-template>
+                        <p class="p-3">Para recoger tus artículos en Cdiego, debes llevar el número de pedido y un
+                            documento
+                            oficial de entidad con foto.</p>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+            <div class="col-xl-4 col-lg-5 col-11 order-details">
+                <table class="checkout-review-order" *ngIf="shoppingCartService.cart$ | async as cart">
+                    <tfoot>
+                        <tr class="cart-subtotal">
+                            <td>Subtotal</td>
+                            <td class="text-right">S/{{cart.subtotal | number: '1.2-2'}}</td>
+                        </tr>
+                        <tr class="cart-subtotal" *ngIf="form.get('shipping').value">
+                            <td>Envío</td>
+                            <td class="text-right">
+                                S/{{ cart.shipping || 0 | number: '1.2-2' }}
+                            </td>
+                        </tr>
+                        <tr class="order-total">
+                            <td>Total</td>
+                            <td class="text-right total">S/{{cart.totalCart() | number: '1.2-2' }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="custom-control custom-radio mt-3">
+                    <input formControlName="method" type="radio" class="custom-control-input" id="customCheck1"
+                        value="credit_card">
+                    <label class="custom-control-label" for="customCheck1">Tarjeta de crédito o débito | Visa,
+                        Mastercard y
+                        más!</label>
+                </div>
+                <hr>
+                <button type="submit" (click)="openCulqui()" [disabled]="form.invalid" color="primary" mat-raised-button
+                    class="text-white position-relative w-100">Finalizar</button>
+            </div>
+        </ng-container>
+        <ng-template #orderTemplate>
+            <div class="col-12">
+                <h2>Gracias. Tu orden ha sido recibida.</h2>
+                <p>¡Gracias por comprar en Pet Shop! Te confirmamos los siguientes datos importantes de tu pedido:</p>
+                <ul class="list-unstyled">
+                    <li>
+                        <span>Total:</span>
+                        <strong class="ml-2">S/ {{order.total | number: '1.2-2'}}</strong>
+                    </li>
+                    <li>
+                        <span>Metodo de Pago:</span>
+                        <strong class="ml-2">{{form.get('method').value === 'bank_deposit' ? 'Déposito
+                            Bancario':'Tarjeta de credito' }}</strong>
+                    </li>
+                </ul>
+                <ng-container *ngIf="form.get('method').value === 'bank_deposit'">
+                    <p>Recuerda que tienes hasta 24 horas útiles para realizar tu pago. Sigue estos sencillos pasos:</p>
+                    <ul class="list-number">
+                        <li>Ver el correo enviado por Pet Shop con tu clave CIP</li>
+                        <li>Elige donde efectuarás tu pago, Banca por internet , móvil,Agencias y agente.</li>
+                        <li>Recuerda indicar tu código CIP y ¡Listo!</li>
+                    </ul>
+                </ng-container>
+                <p class="mb-0">La validación es automática, sin embargo, en algunas ocasiones podría tardar 10 minutos. Para tu
+                    comodidad, Pet Shop enviará actulizaciones sobre tu pedido a través de correos.</p>
+
+                <h3 class="pt-4">Detalles del pedido</h3>
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th class="text-right">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of order.items">
+                            <td>{{item.name}}</td>
+                            <td class="text-right">S/ {{ (item.price * item.quantity) | number: '1.2-2' }}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="cart-subtotal font-weight-bold">
+                            <td>Subtotal:</td>
+                            <td class="text-right">S/ {{order.subtotal | number: '1.2-2' }}</td>
+                        </tr>
+                        <tr class="cart-subtotal font-weight-bold" *ngIf="order.shipping > 0">
+                            <td>Envío:</td>
+                            <td class="text-right">S/ {{order.shipping | number: '1.2-2' }}</td>
+                        </tr>
+                        <tr class="payment-method font-weight-bold">
+                            <td>Metododo de Pago:</td>
+                            <td class="text-right">{{form.get('method').value === 'bank_deposit' ? 'Déposito
+                                Bancario':'Tarjeta de credito' }}</td>
+                        </tr>
+                        <tr class="order-total font-weight-bold">
+                            <td>Total:</td>
+                            <td class="text-right total">S/ {{order.total | number: '1.2-2' }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </ng-template>
+    </form>
+</div>

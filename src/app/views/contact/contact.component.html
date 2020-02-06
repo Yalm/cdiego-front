@@ -1,0 +1,128 @@
+<app-breadcrumb
+    title="Contáctanos"
+    subTitle="Nos ubicamos en el mejor punto de ventas de la ciudad de Huancayo"
+>
+</app-breadcrumb>
+<div class="container d-flex flex-wrap pb-2 pt-5 pb-md-5">
+    <div class="col-md-6">
+        <h2 class="mb-0">Nuestra Tienda</h2>
+        <p class="my-4">
+            “Comercial Diego” se dedica al rubro de la comercialización de
+            dulces y pasteles en general por mayor
+        </p>
+        <h5 class="mb-3">Nos ubicamos:</h5>
+        <ul class="list-unstyled mb-0">
+            <li class="d-flex align-items-center mb-2">
+                <i class="material-icons mr-2">
+                    home
+                </i>
+                Av. José Olaya 591 - Huancayo
+            </li>
+            <li class="d-flex align-items-center mb-2">
+                <i class="material-icons mr-2">
+                    phone
+                </i>
+                964409130
+            </li>
+            <li class="d-flex align-items-center mb-2">
+                <i class="material-icons mr-2">
+                    email
+                </i>
+                admin@comercialdiego.com
+            </li>
+        </ul>
+    </div>
+    <form
+        class="col-md-6 form-row pt-3 pt-md-0"
+        [formGroup]="form"
+        (ngSubmit)="sendEmail()"
+        novalidate
+    >
+        <h2>Envíanos un Correo</h2>
+        <div class="alert alert-success col-12" role="alert" *ngIf="success">
+            Gracias por contáctarnos.
+         </div>
+        <mat-form-field
+            class="w-100 mb-2 col-12 p-0"
+            appearance="outline"
+            hintLabel="Max 191 caracteres"
+        >
+            <mat-label>Nombre</mat-label>
+            <input
+                matInput
+                #name
+                maxlength="191"
+                formControlName="name"
+                placeholder="Nombre"
+                name="name"
+                required
+            />
+            <mat-hint align="end">{{ name.value?.length || 0 }}/191</mat-hint>
+            <mat-error appInvalidMessage="name"></mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+            class="w-100 mb-2 col-md-6 pr-0 pl-0 pr-md-3"
+            appearance="outline"
+            hintLabel="Max 191 caracteres"
+        >
+            <mat-label>Dirección de correo electrónico</mat-label>
+            <input
+                matInput
+                #email
+                maxlength="191"
+                formControlName="email"
+                placeholder="Dirección de correo electrónico"
+                name="email"
+                required
+            />
+            <mat-hint align="end">{{ email.value?.length || 0 }}/191</mat-hint>
+            <mat-error appInvalidMessage="email"></mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+            class="col-md-6 mb-2 p-0"
+            appearance="outline"
+            hintLabel="Max 191 caracteres"
+        >
+            <mat-label>Asunto</mat-label>
+            <input
+                type="text"
+                matInput
+                #subject
+                maxlength="191"
+                formControlName="subject"
+                placeholder="Asunto"
+                name="subject"
+                required
+            />
+            <mat-hint align="end"
+                >{{ subject.value?.length || 0 }}/191</mat-hint
+            >
+            <mat-error appInvalidMessage="subject"></mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+            class="col-12 mb-2 p-0"
+            appearance="outline"
+            hintLabel="Max 300 caracteres"
+        >
+            <mat-label>Mensaje</mat-label>
+            <textarea matInput #message maxlength="300" formControlName="message" name="message" placeholder="Mensaje" required></textarea>
+            <mat-hint align="end"
+                >{{ message.value?.length || 0 }}/300</mat-hint
+            >
+            <mat-error appInvalidMessage="message"></mat-error>
+        </mat-form-field>
+
+        <button
+            type="submit"
+            mat-raised-button
+            [disabled]="form.invalid"
+            color="primary"
+            class="w-100"
+        >
+            Registarse
+        </button>
+    </form>
+</div>
