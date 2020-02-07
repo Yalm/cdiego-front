@@ -10,7 +10,7 @@ import { Order } from 'src/app/models/order.model';
     styleUrls: ['./order-list.component.sass']
 })
 export class OrderListComponent implements OnInit {
-    displayedColumns: string[] = ['id', 'created_at', 'state', 'amount', 'customer', 'actions'];
+    displayedColumns: string[] = ['orders.id', 'orders.createdAt', 'states.name', 'orders.amount', 'customers.name', 'actions'];
     dataSource: PetDataSource<Order[]>;
 
     @ViewChild(MatSort, { static: true }) sort: MatSort;

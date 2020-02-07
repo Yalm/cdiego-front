@@ -1,35 +1,35 @@
-<table mat-table [dataSource]="dataSource" matSort matSortActive="updatedAt" matSortDirection="desc"
+<table mat-table [dataSource]="dataSource" matSort matSortActive="orders.updatedAt" matSortDirection="desc"
     class="w-100">
 
     <!-- id Column -->
-    <ng-container matColumnDef="id">
+    <ng-container matColumnDef="orders.id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
 
     <!-- created_at Column -->
-    <ng-container matColumnDef="created_at">
+    <ng-container matColumnDef="orders.createdAt">
         <th mat-header-cell *matHeaderCellDef class="d-none d-md-table-cell" mat-sort-header> Fecha </th>
         <td mat-cell *matCellDef="let element" class="d-none d-md-table-cell">
             {{element.createdAt | date:'medium' }} </td>
     </ng-container>
 
     <!-- state Column -->
-    <ng-container matColumnDef="state">
+    <ng-container matColumnDef="states.name">
         <th mat-header-cell *matHeaderCellDef class="d-none d-sm-table-cell" mat-sort-header> Estado </th>
         <td mat-cell *matCellDef="let element" class="d-none d-sm-table-cell">
             {{element.state.name  }} </td>
     </ng-container>
 
     <!-- amount Column -->
-    <ng-container matColumnDef="amount">
+    <ng-container matColumnDef="orders.amount">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto </th>
         <td mat-cell *matCellDef="let element"> S/
             {{ element.amount | number: '1.2-2'  }} </td>
     </ng-container>
 
     <!-- amount Column -->
-    <ng-container matColumnDef="customer">
+    <ng-container matColumnDef="customers.name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
         <td mat-cell *matCellDef="let element">
             {{element.customer.name  }} </td>
