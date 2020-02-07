@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <a class="h6 mt-3 text-decoration-none text-dark" [routerLink]="['/p',product.id]">{{product.name}}</a>
-                <p class="mb-0">S/. 10.00</p>
+                <p class="mb-0">S/. {{product.price}}</p>
             </div>
             <mat-paginator [length]="pagination.total" (page)="page($event)"
                 class="d-flex justify-content-end w-100 pt-3" [pageSize]="pagination.per_page"
