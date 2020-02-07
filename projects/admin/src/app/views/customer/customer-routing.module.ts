@@ -10,6 +10,6 @@ export const CustomerRoutingModule: Routes = [
     {
         path: ':id/edit', component: CustomerEditComponent,
         resolve: { customer: IdResolver },
-        data: { path: 'customers', relations: ['document'] }
+        data: { path: 'customers', relations: ['document','orders'] }
     }
 ];
