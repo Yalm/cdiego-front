@@ -4,5 +4,5 @@ export const environment = {
     cuqli: {
         public_key: "pk_test_wvFSgWHdepztNJFh"
     },
-    apiUrl: 'https://cdiego.herokuapp.com',
+    apiUrl: 'https://cdiego-back.herokuapp.com'
 };

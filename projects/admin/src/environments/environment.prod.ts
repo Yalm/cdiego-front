@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://cdiego.herokuapp.com',
+    apiUrl: 'https://cdiego-back.herokuapp.com',
     loginUrl: 'auth/user/login'
 };
 
