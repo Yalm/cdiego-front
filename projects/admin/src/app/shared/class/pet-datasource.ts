@@ -89,7 +89,7 @@ export class PetDataSource<T> extends DataSource<T> {
         }
 
         if (this.options.paginator) {
-            this.query.skip = ((this.options.paginator.pageIndex + 1) - 1) * this.options.paginator.pageSize;
+            this.query.skip = this.options.paginator.pageIndex * this.options.paginator.pageSize;
             this.query.take = this.options.paginator.pageSize;
         }
 

@@ -52,7 +52,7 @@ export class ShopComponent {
 
     page(event: PageEvent) {
         this.router.navigate(['/shop'], {
-            queryParams: { results: event.pageSize, page: event.pageIndex + 1 },
+            queryParams: { limit: event.pageSize, skip: event.pageIndex * event.pageSize },
             queryParamsHandling: 'merge'
         });
     }
