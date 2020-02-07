@@ -18,7 +18,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     order: { items: any[], subtotal: number, total: number, shipping: number };
     form: FormGroup;
     subscription: Subscription;
-    departments: Observable<any[]>;
+    departaments: Observable<any[]>;
     provinces: Observable<any[]>;
     districts: Observable<any[]>;
 
@@ -36,15 +36,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             email: new FormControl(null, Validators.email),
             method: new FormControl(null, Validators.required),
             shipping: new FormControl(true),
-            department: new FormControl(null, Validators.required),
+            departament: new FormControl(null, Validators.required),
             province: new FormControl(null, Validators.required)
         });
 
-        this.departments = this.ubigueo.departments();
+        this.departaments = this.ubigueo.departments();
 
-        this.provinces = this.form.get('department').valueChanges.pipe(
-            tap(department => this.shoppingCartService.shipping(department === '3655' ? 10 : 30)),
-            switchMap(department => this.ubigueo.provinces(department))
+        this.provinces = this.form.get('departament').valueChanges.pipe(
+            tap(departament => this.shoppingCartService.shipping(departament === '3655' ? 10 : 30)),
+            switchMap(departament => this.ubigueo.provinces(departament))
         );
 
         this.subscription = this.culqi.token.subscribe(token => {
