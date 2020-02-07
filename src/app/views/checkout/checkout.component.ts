@@ -88,7 +88,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     shipping(index: number): void {
         if (index === 0) {
-            this.shoppingCartService.shipping(this.form.get('department').value === '3655' ? 5 : 20);
+            this.shoppingCartService.shipping(this.form.get('departament').value === '3655' ? 5 : 20);
             this.form.get('shipping').setValue(true);
 
             this.deleteOrAddValidate(Validators.required);
