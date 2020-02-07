@@ -47,31 +47,31 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             switchMap(department => this.ubigueo.provinces(department))
         );
 
-        // this.subscription = this.culqi.token.subscribe(token => {
-        //     if (token.id) {
-        //         this.form.get('culqi_token').setValue(token.id);
-        //         this.form.get('email').setValue(token.email);
-        //         this.checkout();
-        //     } else {
-        //         this.snackBar.open(token.user_message, 'Ok', {
-        //             duration: 5000,
-        //             panelClass: ['bg-danger', 'text-white']
-        //         });
-        //     }
-        // });
+        this.subscription = this.culqi.token.subscribe(token => {
+            if (token.id) {
+                this.form.get('culqi_token').setValue(token.id);
+                this.form.get('email').setValue(token.email);
+                this.checkout();
+            } else {
+                this.snackBar.open(token.user_message, 'Ok', {
+                    duration: 5000,
+                    panelClass: ['bg-danger', 'text-white']
+                });
+            }
+        });
     }
 
     openCulqui(): void {
-        // if (this.form.get('method').value === 'credit_card') {
-        //     this.culqi.open({
-        //         amount: this.shoppingCartService.cartInit.totalCart(),
-        //         title: 'Comercial Diego',
-        //         currency: 'PEN',
-        //         description: 'Comercial Diego Huancayo'
-        //     });
-        // } else {
+        if (this.form.get('method').value === 'credit_card') {
+            this.culqi.open({
+                amount: this.shoppingCartService.cartInit.totalCart(),
+                title: 'Comercial Diego',
+                currency: 'PEN',
+                description: 'Comercial Diego Huancayo'
+            });
+        } else {
             this.checkout();
-        // }
+        }
     }
 
     private checkout(): void {
@@ -113,6 +113,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        // this.subscription.unsubscribe();
+        this.subscription.unsubscribe();
     }
 }
