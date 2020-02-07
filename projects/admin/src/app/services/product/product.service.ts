@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Product } from 'src/app/models/Product.model';
+import { Product } from 'src/app/models/product.model';
 import { HttpClient } from '@angular/common/http';
 import { catchError, switchMap } from 'rxjs/operators';
 

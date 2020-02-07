@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
-import { Category } from 'src/app/models/Category.model';
+import { Category } from 'src/app/models/category.model';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { DialogDeleteComponent } from '../../../components/dialog-delete/dialog-delete.component';
 

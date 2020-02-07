@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OrderService } from '../../../services/order/order.service';
-import { Order } from 'src/app/models/Order.model';
+import { Order } from 'src/app/models/order.model';
 
 @Component({
     selector: 'app-payment-create',

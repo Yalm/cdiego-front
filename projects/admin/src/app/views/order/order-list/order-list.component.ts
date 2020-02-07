@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PetDataSource } from '../../../shared/class/pet-datasource';
-import { MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { MatSort, MatPaginator } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
-import { Order } from 'src/app/models/Order.model';
-
+import { Order } from 'src/app/models/order.model';
 
 @Component({
     selector: 'app-order-list',

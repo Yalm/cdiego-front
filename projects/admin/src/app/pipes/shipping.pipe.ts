@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { UbigeosService } from 'src/app/services/ubigeos/ubigeos.service';
 import { Observable, of } from 'rxjs';
-import { Shipping } from 'src/app/models/Order.model';
+import { Shipping } from 'src/app/models/order.model';
 
 @Pipe({
     name: 'shipping'

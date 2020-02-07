@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { Observable } from 'rxjs';
-import { Category } from 'src/app/models/Category.model';
+import { Category } from 'src/app/models/category.model';
 import { MatSnackBar } from '@angular/material';
 import { ProductService } from '../../../services/product/product.service';
 
