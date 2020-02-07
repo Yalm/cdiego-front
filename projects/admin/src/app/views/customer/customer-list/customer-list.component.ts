@@ -15,7 +15,6 @@ export class CustomerListComponent implements OnInit {
             { name: 'name', colum_name: 'Nombre' },
             { name: 'surnames', colum_name: 'Apellidos', class: 'd-none d-sm-table-cell' },
             { name: 'email', colum_name: 'Correo', class: 'd-none d-sm-table-cell' },
-            { name: 'orders_count', colum_name: 'Pedidos', class: 'd-none d-sm-table-cell' },
             {
                 name: 'actions', link: {
                     icon: 'edit',
