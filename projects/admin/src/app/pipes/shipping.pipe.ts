@@ -13,10 +13,10 @@ export class ShippingPipe implements PipeTransform {
         let returnValue: Observable<string>;
         switch (args[0]) {
             case 'departament':
-                returnValue = this.ubigeo.department(value.departamentId);
+                returnValue = this.ubigeo.department(value.departamentId.toString());
                 break;
             case 'province':
-                returnValue = this.ubigeo.province(value.departamentId, value.provinceId);
+                returnValue = this.ubigeo.province(value.departamentId.toString(), value.provinceId.toString());
                 break;
             default:
                 returnValue = of(null);

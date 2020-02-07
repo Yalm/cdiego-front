@@ -17,7 +17,7 @@ export class UbigeosService {
     department(id: string): Observable<string> {
         return this.http.get<any[]>('assets/json/departamentos.json')
             .pipe(
-                map(response => response.find(x => x.id_ubigeo === id).nombre_ubigeo)
+                map(response => response.find(({ id_ubigeo }) => id_ubigeo === id).nombre_ubigeo)
             );
     }
 
@@ -34,7 +34,7 @@ export class UbigeosService {
         return this.http.get<any[]>('assets/json/provincias.json').pipe(
             map(response => {
                 const provinces = Object.keys(response).find(element => element === parent);
-                return response[provinces].find(x => x.id_ubigeo === id).nombre_ubigeo;
+                return response[provinces].find(({ id_ubigeo }) => id_ubigeo === id).nombre_ubigeo;
             })
         );
     }
