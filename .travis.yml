@@ -5,29 +5,21 @@ deploy_service_job: &DEPLOY_SERVICE_JOB
   cache:
     directories:
       - node_modules
-      - ${SERVICE_PATH}/node_modules
   install:
     - npm install -g firebase-tools
-    - travis_retry npm install
-    - cd ${SERVICE_PATH}
-    - travis_retry npm install
-    - cd -
+    - npm install
   script:
-    - cd ${SERVICE_PATH}
     - npm run ${BUILD}
     - firebase deploy --token $TOKEN --only ${DEPLOY}
-    - cd -
 jobs:
   include:
     - <<: *DEPLOY_SERVICE_JOB
       name: "Deploy Client"
       env:
-        - SERVICE_PATH="front"
         - BUILD="build:client"
         - DEPLOY="hosting:client"
     - <<: *DEPLOY_SERVICE_JOB
       name: "Deploy Admin"
       env:
-        - SERVICE_PATH="front"
         - BUILD="build:admin"
         - DEPLOY="hosting:admin"
