@@ -110,7 +110,9 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of order.items">
-                            <td>{{item.name}}</td>
+                            <td>
+                                <a class="text-dark" [routerLink]="['/p',item.id]">{{item.name}}</a>
+                            </td>
                             <td class="text-right">S/ {{ (item.price * item.quantity) | number: '1.2-2' }}</td>
                         </tr>
                     </tbody>
