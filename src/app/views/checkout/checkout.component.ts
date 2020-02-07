@@ -100,7 +100,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     private deleteOrAddValidate(validators?: ValidatorFn | ValidatorFn[]): void {
-        const items = ['department', 'province'];
+        const items = ['departament', 'province'];
         for (const key of items) {
             if (validators) {
                 this.form.get(key).setValidators(validators);
