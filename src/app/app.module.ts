@@ -26,6 +26,7 @@ import { QtyComponent } from './components/qty/qty.component';
 import { ShowProductComponent } from './views/show-product/show-product.component';
 import { CheckoutComponent } from './views/checkout/checkout.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { TermsComponent } from './views/terms/terms.component';
 // registrar los locales con el nombre que quieras utilizar a la hora de proveer
 registerLocaleData(localeEsPe, "es-PE");
 
@@ -44,7 +45,8 @@ registerLocaleData(localeEsPe, "es-PE");
         CartComponent,
         QtyComponent,
         ShowProductComponent,
-        CheckoutComponent
+        CheckoutComponent,
+        TermsComponent
     ],
     imports: [
         BrowserModule,

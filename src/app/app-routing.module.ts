@@ -11,6 +11,7 @@ import { CartGuard } from './guards/cart/cart.guard';
 import { CompleteInfoGuard } from './views/auth/guards/complete-info/complete-info.guard';
 import { AuthGuard } from './views/auth/guards/auth/auth.guard';
 import { CheckoutComponent } from './views/checkout/checkout.component';
+import { TermsComponent } from './views/terms/terms.component';
 
 const routes: Routes = [
     { path: "", component: HomeComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: "shop", component: ShopComponent },
     { path: "cart", component: CartComponent },
     { path: 'p/:url', component: ShowProductComponent },
+    { path: 'terms-and-conditions', component: TermsComponent },
     { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard, CartGuard, CompleteInfoGuard] },
     {
         path: '', canActivate: [AuthGuard],

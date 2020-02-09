@@ -39,8 +39,11 @@
 
                 <div class="custom-control custom-checkbox my-1 mr-sm-2">
                     <input type="checkbox" class="custom-control-input" id="terms" formControlName="terms">
-                    <label class="custom-control-label" for="terms">Declaro que he leído y acepto la nueva Política de
-                        Privacidad y los Términos y Condiciones de Comercial Diego.</label>
+                    <label class="custom-control-label" for="terms">Declaro que he leído y acepto la nueva <a
+                            routerLink="/terms-and-conditions">Política de
+                            Privacidad</a> y los <a routerLink="/terms-and-conditions">Términos y Condiciones</a> de
+                        Comercial
+                        Diego.</label>
                 </div>
                 <button type="submit" mat-raised-button [disabled]="form.invalid" color="primary"
                     class="text-white position-relative w-100 mt-3">Registarse</button>
