@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormGroupDirective } from "@angular/forms";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: "app-contact",
@@ -10,7 +11,7 @@ export class ContactComponent implements OnInit {
     form: FormGroup;
     success: boolean;
 
-    constructor() {}
+    constructor(private http: HttpClient) { }
 
     ngOnInit() {
         this.form = new FormGroup({
@@ -20,11 +21,14 @@ export class ContactComponent implements OnInit {
             message: new FormControl("", Validators.required)
         });
     }
-    sendEmail() {
-        this.success = true;
-        this.form.reset();
-        setTimeout(() => {
-            this.success = false;
-        }, 2000);
+    sendEmail(formDirective: FormGroupDirective) {
+        formDirective.resetForm();
+        this.http.post('orders/contact', this.form.value).subscribe(() => {
+            this.form.reset();
+            this.success = true;
+            setTimeout(() => {
+                this.success = false;
+            }, 2000);
+        });
     }
 }

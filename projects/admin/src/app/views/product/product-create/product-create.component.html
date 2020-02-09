@@ -24,9 +24,9 @@
                 </mat-form-field>
 
                 <mat-form-field class="w-100 mb-2" appearance="outline" hintLabel="Max 500 caracteres">
-                    <mat-label>Descripción corta</mat-label>
+                    <mat-label>Descripción en unidades</mat-label>
                     <textarea matInput #short_description formControlName="shortDescription"
-                        placeholder="Descripción corta" name="short_description" required></textarea>
+                        placeholder="Descripción en unidades" name="short_description" required></textarea>
                     <mat-hint align="end">{{short_description.value?.length || 0}}/500</mat-hint>
                     <mat-error appInvalidMessage="shortDescription"></mat-error>
                 </mat-form-field>

@@ -43,7 +43,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.departaments = this.ubigueo.departments();
 
         this.provinces = this.form.get('departament').valueChanges.pipe(
-            tap(() => this.shoppingCartService.shipping(10)),
+            tap(departament => this.shoppingCartService.shipping(departament === '3655' ? 10 : 20)),
             switchMap(departament => this.ubigueo.provinces(departament))
         );
 
@@ -70,25 +70,32 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                 description: 'Comercial Diego Huancayo'
             });
         } else {
-            this.checkout();
+        this.checkout();
         }
     }
 
     private checkout(): void {
-        this.orderService.store(this.form.value).subscribe(() => {
-            this.order = {
-                items: this.shoppingCartService.cartInit.items,
-                subtotal: this.shoppingCartService.cartInit.subtotal,
-                shipping: this.shoppingCartService.cartInit.shipping,
-                total: this.shoppingCartService.cartInit.totalCart()
-            };
-            this.shoppingCartService.reset();
+        this.ubigueo.getProvinceAndDepartment(this.form.value).subscribe(([departament_name, province_name]) => {
+            this.orderService.store({ departament_name, province_name, ...this.form.value }).subscribe(() => {
+                this.order = {
+                    items: this.shoppingCartService.cartInit.items,
+                    subtotal: this.shoppingCartService.cartInit.subtotal,
+                    shipping: this.shoppingCartService.cartInit.shipping,
+                    total: this.shoppingCartService.cartInit.totalCart()
+                };
+                this.shoppingCartService.reset();
+            }, ({ error }) => {
+                this.snackBar.open(error.user_message, 'Ok', {
+                    duration: 5000,
+                    panelClass: ['bg-danger', 'text-white']
+                });
+            });
         });
     }
 
     shipping(index: number): void {
         if (index === 0) {
-            this.shoppingCartService.shipping(10);
+            this.shoppingCartService.shipping(this.form.get('departament').value === '3655' ? 10 : 20);
             this.form.get('shipping').setValue(true);
 
             this.deleteOrAddValidate(Validators.required);

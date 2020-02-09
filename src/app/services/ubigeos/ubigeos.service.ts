@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -37,5 +37,23 @@ export class UbigeosService {
                 return response[provinces].find(({ id_ubigeo }) => id_ubigeo === id).nombre_ubigeo;
             })
         );
+    }
+
+    getProvinceAndDepartment(data: { departament: string, province: string, shipping: boolean }): Observable<[string, string]> | Observable<[null, null]> {
+        if (data.shipping) {
+            return forkJoin(
+                this.http.get<{ id_ubigeo: string, nombre_ubigeo: string }[]>('assets/json/departamentos.json')
+                    .pipe(
+                        map(response => response.find(({ id_ubigeo }) => id_ubigeo === data.departament).nombre_ubigeo)
+                    ),
+                this.http.get<any[]>('assets/json/provincias.json').pipe(
+                    map(response => {
+                        const provinces = Object.keys(response).find(element => element === data.departament);
+                        return response[provinces].find(({ id_ubigeo }) => id_ubigeo === data.province).nombre_ubigeo;
+                    })
+                )
+            );
+        }
+        return forkJoin([of(null), of(null)]);
     }
 }

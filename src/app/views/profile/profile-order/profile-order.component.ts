@@ -23,7 +23,7 @@ export class ProfileOrderComponent implements OnInit {
         this.dataSource = new PetDataSource({
             url: 'orders',
             http: this.http,
-            params: { where: { customerId: user.sub }, relations: ['state'] },
+            params: { where: { customer: user.sub }, relations: ['state'] },
             paginator: this.paginator
         });
     }

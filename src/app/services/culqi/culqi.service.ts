@@ -60,7 +60,7 @@ export class CulqiService {
     }
 
     private setOptions(key: string, options?: OptionsCulqi): void {
-        Culqi.publicKey = key || environment.cuqli.public_key;
+        Culqi.publicKey = key || environment.culqi.public_key;
         Culqi.options(options || {
             style: {
                 style: { maincolor: '#da573e' }

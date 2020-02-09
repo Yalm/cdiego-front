@@ -12,7 +12,7 @@ import { AuthService } from '../services/auth/auth.service';
 export class LoginComponent implements OnInit {
 
     form: FormGroup;
-    private returnUrl: string;
+    returnUrl: string;
     verify: { isVerify: boolean };
 
     constructor(

@@ -8,7 +8,7 @@ export interface Product {
     readonly url: string;
     stock: number;
     readonly description: string;
-    readonly short_description: string;
+    readonly shortDescription: string;
     readonly category_id: number;
     readonly category: Category;
     readonly transport?: Transport;

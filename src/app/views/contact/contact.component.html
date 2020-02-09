@@ -35,7 +35,8 @@
     <form
         class="col-md-6 form-row pt-3 pt-md-0"
         [formGroup]="form"
-        (ngSubmit)="sendEmail()"
+        #formDirective="ngForm"
+        (ngSubmit)="sendEmail(formDirective)"
         novalidate
     >
         <h2>Envíanos un Correo</h2>
