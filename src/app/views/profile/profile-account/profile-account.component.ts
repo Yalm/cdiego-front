@@ -6,6 +6,7 @@ import { IdentificationDocument } from 'src/app/models/identification-document.m
 import { AuthService } from '../../auth/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { MatSnackBar } from '@angular/material';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
     selector: 'app-profile-account',
@@ -16,12 +17,14 @@ export class ProfileAccountComponent implements OnInit {
 
     form: FormGroup;
     documents: Observable<IdentificationDocument[]>;
+    length$: Observable<number>;
 
     constructor(
         private document: DocumentService,
         private snackBar: MatSnackBar,
         private userService: UserService,
-        private auth: AuthService) { }
+        private auth: AuthService
+    ) { }
 
     ngOnInit(): void {
         this.auth.me().subscribe(customer => {
@@ -29,7 +32,7 @@ export class ProfileAccountComponent implements OnInit {
                 id: new FormControl(customer.id, Validators.required),
                 name: new FormControl(customer.name, Validators.required),
                 surnames: new FormControl(customer.surnames, Validators.required),
-                document: new FormControl(customer.document ? customer.document.id: null, Validators.required),
+                document: new FormControl(customer.document ? customer.document.id : null, Validators.required),
                 documentNumber: new FormControl(customer.documentNumber,
                     [Validators.required, Validators.pattern('^[0-9]*$')]
                 ),
@@ -37,6 +40,11 @@ export class ProfileAccountComponent implements OnInit {
                     [Validators.required, Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')]
                 )
             });
+
+            this.length$ = this.form.get('document').valueChanges.pipe(
+                startWith(customer.document ? customer.document.id : 1),
+                map(id => id === 1 ? 8 : 11)
+            );
         });
         this.documents = this.document.index();
     }

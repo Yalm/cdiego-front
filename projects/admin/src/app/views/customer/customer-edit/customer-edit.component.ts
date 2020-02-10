@@ -7,6 +7,7 @@ import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { CustomerService } from '../../../services/customer/customer.service';
 import { Order } from 'src/app/models/order.model';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-customer-edit',
@@ -18,6 +19,7 @@ export class CustomerEditComponent implements OnInit {
     documents: Observable<IdentificationDocument[]>;
     displayedColumns: string[] = ['id', 'amount', 'payment_type', 'state', 'edit'];
     dataSource = new MatTableDataSource<Order>();
+    length$: Observable<number>;
 
     constructor(
         public documentService: DocumentService,
@@ -37,6 +39,12 @@ export class CustomerEditComponent implements OnInit {
             phone: new FormControl(customer.phone, [Validators.required]),
             email: new FormControl(customer.email, [Validators.required, Validators.email])
         });
+
+        this.length$ = this.form.get('document').valueChanges.pipe(
+            startWith(customer.document ? customer.document.id : 1),
+            map(id => id === 1 ? 8 : 11)
+        );
+
         this.dataSource.data = customer.orders;
         this.documents = this.documentService.index();
     }

@@ -25,24 +25,27 @@
             <mat-error appInvalidMessage="document"></mat-error>
         </mat-form-field>
 
-        <mat-form-field class="col-md-6 mb-2" appearance="outline" hintLabel="Max 10 caracteres">
-            <mat-label>Numero de documento</mat-label>
-            <input type="text" matInput #document_number maxlength="10" formControlName="documentNumber"
-                placeholder="Numero de documento" name="document_number" required>
-            <mat-hint align="end">{{document_number.value?.length || 0}}/10</mat-hint>
-            <mat-error appInvalidMessage="documentNumber"></mat-error>
-        </mat-form-field>
+        <ng-container *ngIf="length$ | async as lengthDocument">
+            <mat-form-field class="col-md-6 mb-2" appearance="outline" hintLabel="Max {{lengthDocument}} caracteres">
+                <mat-label>Numero de documento</mat-label>
+                <input type="text" matInput #document_number [minLength]="lengthDocument" [maxlength]="lengthDocument" formControlName="documentNumber"
+                    placeholder="Numero de documento" name="document_number" required>
+                <mat-hint align="end">{{document_number.value?.length || 0}}/{{ lengthDocument }}</mat-hint>
+                <mat-error appInvalidMessage="documentNumber"></mat-error>
+            </mat-form-field>
+        </ng-container>
 
         <mat-form-field class="col-12 mb-2" appearance="outline" hintLabel="Max 20 caracteres">
             <mat-label>Telefono/Celular</mat-label>
-            <input matInput #phone maxlength="20" formControlName="phone" placeholder="Telefono/Celular"
-                name="phone" required>
+            <input matInput #phone maxlength="20" formControlName="phone" placeholder="Telefono/Celular" name="phone"
+                required>
             <mat-hint align="end">{{phone.value?.length || 0}}/20</mat-hint>
             <mat-error appInvalidMessage="phone"></mat-error>
         </mat-form-field>
 
         <div class="form-group col-md-12 d-flex justify-content-end">
-            <button color="primary" mat-raised-button type="submit" class="text-white position-relative" [disabled]="form.invalid">Guardar</button>
+            <button color="primary" mat-raised-button type="submit" class="text-white position-relative"
+                [disabled]="form.invalid">Guardar</button>
         </div>
     </form>
 </ng-container>

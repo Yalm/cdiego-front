@@ -8,7 +8,7 @@ export const environment = {
     culqi: {
         public_key: "pk_test_R9BjlKbSaIrcXgMP"
     },
-    apiUrl: "http://localhost:3000"
+    apiUrl: 'https://cdiego-back.herokuapp.com'
 };
 
 /*

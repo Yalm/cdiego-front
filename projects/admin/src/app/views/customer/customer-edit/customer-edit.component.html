@@ -27,13 +27,15 @@
                     <mat-error appInvalidMessage="document"></mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="col-md-6 mb-2" appearance="outline" hintLabel="Max 191 caracteres">
-                    <mat-label>Numero de documento</mat-label>
-                    <input matInput #document_number maxlength="10" formControlName="documentNumber"
-                        placeholder="Numero de documento" name="documentNumber" required>
-                    <mat-hint align="end">{{document_number.value?.length || 0}}/10</mat-hint>
-                    <mat-error appInvalidMessage="documentNumber"></mat-error>
-                </mat-form-field>
+                <ng-container *ngIf="length$ | async as lengthDocument">
+                    <mat-form-field class="col-md-6 mb-2" appearance="outline" hintLabel="Max {{lengthDocument}} caracteres">
+                        <mat-label>Numero de documento</mat-label>
+                        <input matInput #document_number [minLength]="lengthDocument" [maxlength]="lengthDocument" formControlName="documentNumber"
+                            placeholder="Numero de documento" name="documentNumber" required>
+                            <mat-hint align="end">{{document_number.value?.length || 0}}/{{ lengthDocument }}</mat-hint>
+                        <mat-error appInvalidMessage="documentNumber"></mat-error>
+                    </mat-form-field>
+                </ng-container>
 
                 <mat-form-field class="col-md-6 mb-2" appearance="outline" hintLabel="Max 191 caracteres">
                     <mat-label>Telefono/Celular</mat-label>
@@ -103,6 +105,7 @@
     </mat-card-content>
     <mat-card-actions class="pl-3 pb-3 mt-n4">
         <a mat-button routerLink="/customers" color="primary">Atras</a>
-        <button type="button" (click)="update()" [disabled]="form.invalid" color="primary" mat-raised-button>Guardar</button>
+        <button type="button" (click)="update()" [disabled]="form.invalid" color="primary"
+            mat-raised-button>Guardar</button>
     </mat-card-actions>
 </mat-card>
