@@ -27,6 +27,7 @@ import { ShowProductComponent } from './views/show-product/show-product.componen
 import { CheckoutComponent } from './views/checkout/checkout.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { TermsComponent } from './views/terms/terms.component';
+import { environment } from 'src/environments/environment';
 // registrar los locales con el nombre que quieras utilizar a la hora de proveer
 registerLocaleData(localeEsPe, "es-PE");
 
@@ -53,7 +54,7 @@ registerLocaleData(localeEsPe, "es-PE");
         AppRoutingModule,
         BrowserAnimationsModule,
         SharedModule,
-        Ng2UiAuthModule.forRoot({}),
+        Ng2UiAuthModule.forRoot({ providers: environment.providers }),
         MatCarouselModule.forRoot()
     ],
     providers: [

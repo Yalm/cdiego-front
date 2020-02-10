@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
             .subscribe(response => {
                 this.auth.setToken(response.access_token);
                 this.router.navigateByUrl(this.returnUrl);
-            }, response => {
-                this.errorsShow(response.error);
+            }, ({ error }) => {
+                this.errorsShow(error);
             });
     }
 
