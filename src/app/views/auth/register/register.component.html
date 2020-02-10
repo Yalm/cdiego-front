@@ -4,12 +4,20 @@
             <h1 class="font-weight-bold text-center">Registro</h1>
             <p class="text-center">Ya tienes una cuenta? <a routerLink="/login">Iniciar Sesión</a> </p>
             <form [formGroup]="form" (ngSubmit)="register()" class="form-row pt-3" novalidate>
-                <mat-form-field class="w-100 mb-2 col-12" appearance="outline" hintLabel="Max 191 caracteres">
+                <mat-form-field class="w-100 mb-2 col-md-6" appearance="outline" hintLabel="Max 191 caracteres">
                     <mat-label>Nombre</mat-label>
                     <input matInput #name maxlength="191" formControlName="name" placeholder="Nombre" name="name"
                         required>
                     <mat-hint align="end">{{name.value?.length || 0}}/191</mat-hint>
                     <mat-error appInvalidMessage="name"></mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-100 mb-2 col-md-6" appearance="outline" hintLabel="Max 191 caracteres">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput #surnames maxlength="191" formControlName="surnames" placeholder="Apellidos" name="surnames"
+                        required>
+                    <mat-hint align="end">{{surnames.value?.length || 0}}/191</mat-hint>
+                    <mat-error appInvalidMessage="surnames"></mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="w-100 mb-2 col-12" appearance="outline" hintLabel="Max 191 caracteres">

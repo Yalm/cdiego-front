@@ -26,10 +26,11 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
         this.form = new FormGroup({
             name: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+            surnames: new FormControl(null, [Validators.required, Validators.minLength(3)]),
             email: new FormControl(null, [Validators.required, Validators.email]),
             password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
             password_confirmation: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-            terms: new FormControl(null, [Validators.requiredTrue])
+            terms: new FormControl(null, Validators.requiredTrue)
         });
         this.form.get('password_confirmation').setValidators(EqualsValidator(this.form.get('password')));
         this.route.queryParams.subscribe(params => this.returnUrl = params.return || '/profile');
@@ -38,8 +39,8 @@ export class RegisterComponent implements OnInit {
     register(): void {
         this.auth.register({ return: this.returnUrl, ...this.form.value }).subscribe(() => {
             this.sendEmailVerify = true;
-        }, response => {
-            this.errorsShow(response.error);
+        }, ({ error }) => {
+            this.errorsShow(error);
         });
     }
 

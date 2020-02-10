@@ -28,8 +28,6 @@ export class CompleteInfoComponent implements OnInit {
         this.auth.me().subscribe(customer => {
             this.form = new FormGroup({
                 id: new FormControl(customer.id, Validators.required),
-                name: new FormControl(customer.name, Validators.required),
-                surnames: new FormControl(customer.surnames, Validators.required),
                 phone: new FormControl(customer.phone, [
                     Validators.required,
                     Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
