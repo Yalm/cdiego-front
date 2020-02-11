@@ -22,8 +22,8 @@ export class ContactComponent implements OnInit {
         });
     }
     sendEmail(formDirective: FormGroupDirective) {
-        formDirective.resetForm();
         this.http.post('orders/contact', this.form.value).subscribe(() => {
+            formDirective.resetForm();
             this.form.reset();
             this.success = true;
             setTimeout(() => {
