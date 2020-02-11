@@ -75,10 +75,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     changeProvince(province: string) {
-        if (province === '3656') {
+        const departament = this.form.get('departament').value;
+        if (province === '3656' && departament === '3655') {
             this.shoppingCartService.shipping(0);
-        } else {
+        } else if (departament === '3655') {
             this.shoppingCartService.shipping(10);
+        } else {
+            this.shoppingCartService.shipping(20);
         }
     }
 
