@@ -70,7 +70,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                 description: 'Comercial Diego Huancayo'
             });
         } else {
-        this.checkout();
+            this.checkout();
+        }
+    }
+
+    changeProvince(province: string) {
+        if (province === '3656') {
+            this.shoppingCartService.shipping(0);
         }
     }
 
@@ -95,7 +101,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     shipping(index: number): void {
         if (index === 0) {
-            this.shoppingCartService.shipping(this.form.get('departament').value === '3655' ? 10 : 20);
+            if (this.form.get('departament').value === '3655') {
+                this.shoppingCartService.shipping(this.form.get('province').value === '3656' ? 0 : 10);
+            } else {
+                this.shoppingCartService.shipping(20);
+            }
+
             this.form.get('shipping').setValue(true);
 
             this.deleteOrAddValidate(Validators.required);

@@ -23,7 +23,7 @@
 
                         <mat-form-field class="col-md-6 mb-2" appearance="outline">
                             <mat-label>Provincia</mat-label>
-                            <mat-select placeholder="Provincia" formControlName="province">
+                            <mat-select placeholder="Provincia" formControlName="province" (selectionChange)="changeProvince($event.value)">
                                 <mat-option *ngFor="let item of provinces | async" [value]="item.id_ubigeo">
                                     {{item.nombre_ubigeo}}
                                 </mat-option>
