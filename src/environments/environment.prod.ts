@@ -8,7 +8,8 @@ export const environment = {
     providers: {
         google: {
             clientId: '230642192836-5763ibgi0827ssim1oidilrse4gp98a3.apps.googleusercontent.com',
-            url: 'auth/customer/login/google'
+            url: 'auth/customer/login/google',
+            scope: ['profile', 'email']
         }
     }
 };

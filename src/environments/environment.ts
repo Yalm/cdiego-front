@@ -12,7 +12,8 @@ export const environment = {
     providers: {
         google: {
             clientId: '',
-            url: 'auth/customer/login/google'
+            url: 'auth/customer/login/google',
+            scope: ['profile', 'email']
         }
     }
 };
