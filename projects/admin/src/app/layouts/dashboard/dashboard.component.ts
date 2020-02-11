@@ -51,7 +51,7 @@ const TREE_DATA: FoodNode[] = [
         icon: 'table_chart',
         children: [
             { name: 'Clientes', link: '/reports/customers' },
-            { name: 'Products', link: '/reports/products' },
+            { name: 'Productos', link: '/reports/products' },
             { name: 'Pedidos', link: '/reports/purchases' }
         ]
     }
