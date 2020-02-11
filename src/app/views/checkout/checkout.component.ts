@@ -77,6 +77,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     changeProvince(province: string) {
         if (province === '3656') {
             this.shoppingCartService.shipping(0);
+        } else {
+            this.shoppingCartService.shipping(10);
         }
     }
 
