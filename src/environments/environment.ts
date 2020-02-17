@@ -8,10 +8,10 @@ export const environment = {
     culqi: {
         public_key: "pk_test_R9BjlKbSaIrcXgMP"
     },
-    apiUrl: 'http://localhost:3000',
+    apiUrl: 'https://cdiego-back.herokuapp.com',
     providers: {
         google: {
-            clientId: '',
+            clientId: '433637944143-h21kc94j9hnlm38nd5b5f1mpp8q3fbcd.apps.googleusercontent.com',
             url: 'auth/customer/login/google',
             scope: ['profile', 'email']
         }
