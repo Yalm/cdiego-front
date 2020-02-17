@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: "cart", component: CartComponent },
     { path: 'p/:url', component: ShowProductComponent },
     { path: 'terms-and-conditions', component: TermsComponent },
-    { path: 'checkout', component: CheckoutComponent, canActivate: [CartGuard] },
+    { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard, CartGuard, CompleteInfoGuard] },
     {
         path: '', canActivate: [AuthGuard],
         loadChildren: () => import('./views/profile/profile.module').then(m => m.ProfileModule)
