@@ -40,8 +40,8 @@
                 <mat-form-field class="col-md-6 mb-2" appearance="outline" hintLabel="Max 191 caracteres">
                     <mat-label>Telefono/Celular</mat-label>
                     <input matInput #document_number maxlength="191" formControlName="phone"
-                        placeholder="Telefono/Celular" name="phone" required>
-                    <mat-hint align="end">{{document_number.value?.length || 0}}/0</mat-hint>
+                        placeholder="Telefono/Celular" name="phone">
+                    <mat-hint align="end">{{document_number.value?.length || 0}}/20</mat-hint>
                     <mat-error appInvalidMessage="phone"></mat-error>
                 </mat-form-field>
 
