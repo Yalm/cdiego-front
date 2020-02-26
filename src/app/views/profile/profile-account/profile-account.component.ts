@@ -37,7 +37,7 @@ export class ProfileAccountComponent implements OnInit {
                     [Validators.required, Validators.pattern('^[0-9]*$')]
                 ),
                 phone: new FormControl(customer.phone,
-                    [Validators, Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')]
+                    Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
                 )
             });
 

@@ -39,6 +39,7 @@
             <mat-label>Telefono/Celular</mat-label>
             <input matInput #phone maxlength="20" formControlName="phone" placeholder="Telefono/Celular" name="phone">
             <mat-hint align="end">{{phone.value?.length || 0}}/20</mat-hint>
+            <mat-error appInvalidMessage="phone"></mat-error>
         </mat-form-field>
 
         <div class="form-group col-md-12 d-flex justify-content-end">
