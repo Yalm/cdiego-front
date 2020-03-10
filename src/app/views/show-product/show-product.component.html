@@ -24,6 +24,7 @@
                 </div>
                 <h5>S/ {{product.price | number: '1.2-2' }}</h5>
                 <p>{{product.shortDescription}}</p>
+                <p>Stock: {{product.stock}}</p>
                 <app-qty [product]="product"></app-qty>
             </div>
             <h4 class="border-light border p-4 w-100 text-center my-4">Descripción</h4>

@@ -48,4 +48,22 @@ export class QtyComponent {
         this.shoppingCartService.add({ quantity: this.quantity, ... this.product });
         this.snackBar.open('Su producto ha sido agregado.', 'Ok', { duration: 5000 });
     }
+
+    isDisabled = (_product) => {
+        let status = false;
+        if (this.product.stock < 1) {
+            return true
+        }
+        this.shoppingCartService.cart$.subscribe(data => {
+            const productsOfCart = data.items;
+            productsOfCart.forEach(_prod => {
+                if (_prod.id == _product.id) {
+                    if (_prod.stock == _prod.quantity) {
+                        status = true
+                    }
+                }
+            })
+        })
+        return status
+    }
 }
